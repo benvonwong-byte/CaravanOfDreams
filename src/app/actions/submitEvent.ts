@@ -14,6 +14,10 @@ interface SubmitEventData {
 }
 
 export async function submitEvent(data: SubmitEventData) {
+  if (!writeClient) {
+    return { success: false, error: 'Sanity is not configured yet.' }
+  }
+
   try {
     const result = await writeClient.create({
       _type: 'event',

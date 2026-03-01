@@ -12,6 +12,10 @@ export async function sanityFetch<T>({
   params?: QueryParams
   tags?: string[]
 }): Promise<T> {
+  if (!client) {
+    return [] as unknown as T
+  }
+
   try {
     return await client.fetch<T>(query, params, {
       next: {
