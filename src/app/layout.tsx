@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { fraunces, dmSans } from './fonts'
 import { Header } from '@/components/Header'
+import { Footer } from '@/components/Footer'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -19,6 +20,7 @@ export default function RootLayout({
       <body className="bg-cream-200 text-charcoal-700 font-sans antialiased">
         <Header />
         <main className="pt-16">{children}</main>
+        <Footer />
       </body>
     </html>
   )
