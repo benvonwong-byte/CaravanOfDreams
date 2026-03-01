@@ -12,10 +12,15 @@ export async function sanityFetch<T>({
   params?: QueryParams
   tags?: string[]
 }): Promise<T> {
-  return client.fetch<T>(query, params, {
-    next: {
-      tags,
-      revalidate: tags.length ? false : 60,
-    },
-  })
+  try {
+    return await client.fetch<T>(query, params, {
+      next: {
+        tags,
+        revalidate: tags.length ? false : 60,
+      },
+    })
+  } catch (error) {
+    console.error('Sanity fetch error:', error)
+    return [] as unknown as T
+  }
 }
