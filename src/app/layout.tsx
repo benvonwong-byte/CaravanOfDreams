@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { fraunces, dmSans } from './fonts'
+import { Header } from '@/components/Header'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -16,7 +17,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${fraunces.variable} ${dmSans.variable}`}>
       <body className="bg-cream-200 text-charcoal-700 font-sans antialiased">
-        {children}
+        <Header />
+        <main className="pt-16">{children}</main>
       </body>
     </html>
   )
