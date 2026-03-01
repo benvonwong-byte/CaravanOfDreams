@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { sanityFetch } from '@/sanity/lib/fetch'
 import { EVENT_BY_SLUG_QUERY } from '@/sanity/lib/queries'
 import { PortableText } from 'next-sanity'
+import { portableTextComponents } from '@/components/PortableTextComponents'
 
 const categoryLabels: Record<string, string> = {
   talk: 'Talk',
@@ -78,7 +79,7 @@ export default async function EventPage({
 
       {event.description && (
         <div className="prose prose-lg max-w-none">
-          <PortableText value={event.description} />
+          <PortableText value={event.description} components={portableTextComponents} />
         </div>
       )}
     </div>
