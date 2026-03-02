@@ -9,10 +9,15 @@ export function HostCTA() {
           <h2 className="font-serif text-3xl md:text-4xl text-charcoal-700 mb-6">
             Got an idea? A movement? A conversation that needs a room?
           </h2>
+          <p className="text-charcoal-500 mb-4 leading-relaxed">
+            <strong className="text-charcoal-700">Community events are free.</strong>{' '}
+            Host a talk, a hackathon, a workshop, a gathering — the only
+            cost is eating and drinking in the space.
+          </p>
           <p className="text-charcoal-500 mb-8 leading-relaxed">
-            We open our doors to anyone with a vision worth sharing. Host a
-            talk, a hackathon, a workshop, a gathering — the only cost is
-            eating and drinking in the space.
+            Planning a private event? We offer the same beautiful space
+            with dedicated service.{' '}
+            <span className="text-teal-600 font-medium">Reach out to learn more.</span>
           </p>
           <Link
             href="/host"

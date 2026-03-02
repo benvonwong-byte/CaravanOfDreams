@@ -10,8 +10,8 @@ export function Footer() {
               Caravan of Dreams
             </h3>
             <p className="text-cream-400 text-sm leading-relaxed">
-              Since 1991, a gathering space for thinkers, doers, and dreamers
-              in the heart of the East Village.
+              Since 1991, a space for feeding curiosity and nourishing
+              possibility — in the heart of the East Village.
             </p>
           </div>
 

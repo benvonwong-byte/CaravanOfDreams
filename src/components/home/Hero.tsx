@@ -18,13 +18,13 @@ export function Hero() {
           Another world is possible.
           <br />
           <span className="text-terracotta-300">
-            We&apos;re building it over dinner.
+            Come nourish it.
           </span>
         </h1>
 
         <p className="text-lg md:text-xl text-cream-400 mb-10 max-w-xl mx-auto">
-          A free space for gathering, building, and dreaming — in the heart
-          of the East Village since 1991.
+          A space for feeding curiosity, fueling possibility, and nourishing
+          both body and mind — in the heart of the East Village since 1991.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">

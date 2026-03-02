@@ -75,15 +75,27 @@ export default function SpacePage() {
         <h2 className="font-serif text-3xl text-charcoal-700 mb-4">
           See yourself here?
         </h2>
-        <p className="text-charcoal-500 mb-6">
-          The only cost of hosting is eating and drinking in the space.
+        <p className="text-charcoal-500 mb-2">
+          <strong className="text-charcoal-700">Community events are free</strong> — the
+          only cost is eating and drinking in the space.
         </p>
-        <Link
-          href="/host"
-          className="inline-block px-8 py-3 bg-teal-500 text-cream-100 rounded-button font-semibold hover:bg-teal-600 transition-colors"
-        >
-          Host Your Event
-        </Link>
+        <p className="text-charcoal-500 mb-8">
+          Private events available by arrangement.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Link
+            href="/host"
+            className="inline-block px-8 py-3 bg-teal-500 text-cream-100 rounded-button font-semibold hover:bg-teal-600 transition-colors"
+          >
+            Host a Community Event
+          </Link>
+          <a
+            href="mailto:events@caravanofdreams.net"
+            className="inline-block px-8 py-3 border-2 border-charcoal-300 text-charcoal-600 rounded-button font-semibold hover:bg-charcoal-100 transition-colors"
+          >
+            Inquire About Private Events
+          </a>
+        </div>
       </div>
     </div>
   )
