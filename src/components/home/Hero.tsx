@@ -1,8 +1,16 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 export function Hero() {
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center bg-charcoal-700 overflow-hidden">
+      <Image
+        src="/images/storefront.jpg"
+        alt="Caravan of Dreams storefront"
+        fill
+        className="object-cover"
+        priority
+      />
       <div className="absolute inset-0 bg-gradient-to-b from-charcoal-900/60 to-charcoal-700/80" />
 
       <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">

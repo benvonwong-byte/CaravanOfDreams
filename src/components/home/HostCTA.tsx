@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 export function HostCTA() {
@@ -20,7 +21,14 @@ export function HostCTA() {
             Submit Your Event
           </Link>
         </div>
-        <div className="aspect-[4/3] bg-sage-200 rounded-card" />
+        <div className="relative aspect-[4/3] rounded-card overflow-hidden">
+          <Image
+            src="/images/live-music.jpg"
+            alt="Live event at Caravan of Dreams"
+            fill
+            className="object-cover"
+          />
+        </div>
       </div>
     </section>
   )

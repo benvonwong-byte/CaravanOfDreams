@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 export const metadata = {
@@ -16,7 +17,14 @@ export default function SpacePage() {
         East Village.
       </p>
 
-      <div className="aspect-[21/9] bg-charcoal-200 rounded-card mb-16" />
+      <div className="relative aspect-[21/9] rounded-card overflow-hidden mb-16">
+        <Image
+          src="/images/outdoor-patio.jpg"
+          alt="Caravan of Dreams outdoor patio"
+          fill
+          className="object-cover"
+        />
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
         <div className="bg-cream-100 rounded-card p-6">
@@ -41,6 +49,25 @@ export default function SpacePage() {
             Daytime slots (11am–4pm) and weekends are ideal for events.
             Evenings available by arrangement.
           </p>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-16">
+        <div className="relative aspect-[4/3] rounded-card overflow-hidden">
+          <Image
+            src="/images/interior-2.jpg"
+            alt="Caravan of Dreams interior"
+            fill
+            className="object-cover"
+          />
+        </div>
+        <div className="relative aspect-[4/3] rounded-card overflow-hidden">
+          <Image
+            src="/images/interior-3.jpg"
+            alt="Caravan of Dreams dining area"
+            fill
+            className="object-cover"
+          />
         </div>
       </div>
 

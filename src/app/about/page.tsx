@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 export const metadata = {
   title: 'About — Caravan of Dreams',
   description: 'The story of Caravan of Dreams — from a 1991 East Village vision to a gathering space for dreamers.',
@@ -21,6 +23,15 @@ export default function AboutPage() {
           .
         </p>
 
+        <div className="relative aspect-[4/3] rounded-card overflow-hidden my-8">
+          <Image
+            src="/images/angel-moreno.jpg"
+            alt="Angel Moreno, founder of Caravan of Dreams"
+            fill
+            className="object-cover"
+          />
+        </div>
+
         <p>
           It was the first organic vegan restaurant in the East Village — a
           neighborhood that had already given the world the Beat poets, punk
@@ -29,7 +40,14 @@ export default function AboutPage() {
           art, and community could sit at the same table.
         </p>
 
-        <div className="aspect-[16/9] bg-charcoal-200 rounded-card my-8" />
+        <div className="relative aspect-[16/9] rounded-card overflow-hidden my-8">
+          <Image
+            src="/images/early-years.jpg"
+            alt="Caravan of Dreams in its early years"
+            fill
+            className="object-cover"
+          />
+        </div>
 
         <p>
           Within its first year, Caravan went fully plant-based. The kitchen
