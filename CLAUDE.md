@@ -11,19 +11,24 @@ Site for a vegan restaurant and free community event space in NYC's East Village
 
 - `src/app/`: App Router routes. `admin` is Sanity Studio, `api/revalidate` the Sanity webhook, `actions/submitEvent.ts` the server action that writes to Sanity. `(collab)/brooklyn-bugs` has its own dark layout with no global header or footer.
 - `src/components/`: shared UI; page-specific components in `home/`, `events/`, `host/`.
-- `src/lib/events.ts`: `EVENT_CATEGORIES`, `EventSummary`/`EventDetail`, `categoryLabel`, `formatEventTime`.
-- `src/lib/demo-events.ts`: events shown when Sanity returns none (server-only).
-- `src/sanity/`: `lib/fetch.ts` (`sanityFetch`), `lib/queries.ts` (GROQ), `schemaTypes/`.
+- `src/lib/site.ts`: venue name, address, events email, nav links, time zone.
+- `src/lib/events.ts`: `EVENT_CATEGORIES`, event types, date helpers, `splitUpcomingAndPast`.
+- `src/lib/menu.ts`: `MENU_CATEGORIES`, `DIETARY_TAGS`, `MenuItem`.
+- `src/lib/demo-events.ts`: events shown when Sanity is unconfigured (server-only).
+- `src/sanity/`: `env.ts` (`isSanityConfigured`), `lib/fetch.ts` (`sanityFetch`), `lib/queries.ts` (GROQ), `schemaTypes/`.
 - `src/app/globals.css`: all design tokens.
 - `docs/plans/2026-03-01-caravan-website-rebrand-design.md`: brand voice, palette, page intent. Read it before design or copy work.
 
 ## Rules
 
-- Event categories and types: define only in `src/lib/events.ts`. Schema, filter, form and badges derive from it.
-- Demo events: only in `src/lib/demo-events.ts`.
-- Read Sanity through `sanityFetch` with `tags: ['<_type>']` (drives the revalidate webhook); `fallback: null` for single documents. Without env vars the site runs in demo mode. That is expected locally, not a bug.
+- Shared facts and lists live in `src/lib/` and nowhere else: categories, tags, address, email, nav links. Schemas, filters, forms and badges derive from them.
+- Event dates: use `formatEventDate`, `formatEventTime`, `eventDateParts` (venue time zone). Never call `toLocale*` or `getDate()` on an event date.
+- Anything that reads the clock (`Date.now()`, upcoming vs past) runs in a server component or a `src/lib` helper, never in a client component's render.
+- Read Sanity through `sanityFetch` with `tags: ['<_type>']`; `fallback: null` for single documents. Tagged fetches also revalidate hourly.
+- Demo content renders only when `isSanityConfigured` is false. A configured but empty dataset shows the empty states.
 - Server components by default; `'use client'` only for interactivity.
 - Tailwind utilities with brand tokens only: colors `terracotta|sage|mustard|charcoal|cream|teal`, `rounded-card|button|pill`, `shadow-soft|card|elevated`, `font-serif` for headings, `font-sans` for body. No hex colors, no new CSS files.
+- Every `<Image fill>` gets a `sizes` prop matching its container.
 
 ## Efficiency
 
