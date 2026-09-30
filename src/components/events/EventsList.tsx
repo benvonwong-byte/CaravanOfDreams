@@ -7,20 +7,24 @@ import { ViewToggle } from './ViewToggle'
 import { Calendar } from './Calendar'
 import {
   categoryLabel,
+  formatEventDate,
   formatEventTime,
   type EventSummary,
 } from '@/lib/events'
 
-export function EventsList({ events }: { events: EventSummary[] }) {
+interface EventsListProps {
+  // Split on the server so the client never renders with a different `now`.
+  upcoming: EventSummary[]
+  past: EventSummary[]
+}
+
+export function EventsList({ upcoming, past }: EventsListProps) {
   const [filter, setFilter] = useState('all')
   const [view, setView] = useState<'list' | 'calendar'>('list')
 
-  const now = new Date()
-  const filtered = events.filter(
-    (e) => filter === 'all' || e.category === filter
-  )
-  const upcoming = filtered.filter((e) => new Date(e.date) >= now)
-  const past = filtered.filter((e) => new Date(e.date) < now)
+  const matches = (e: EventSummary) => filter === 'all' || e.category === filter
+  const upcomingShown = upcoming.filter(matches)
+  const pastShown = past.filter(matches)
 
   return (
     <div>
@@ -30,38 +34,40 @@ export function EventsList({ events }: { events: EventSummary[] }) {
       </div>
 
       {view === 'calendar' ? (
-        <Calendar events={events} filter={filter} />
+        <Calendar events={[...upcomingShown, ...pastShown]} />
       ) : (
         <>
-          {upcoming.length > 0 && (
+          {upcomingShown.length > 0 && (
             <div className="mb-12">
               <h3 className="text-sm font-semibold text-charcoal-400 uppercase tracking-wider mb-4">
                 Upcoming
               </h3>
               <div className="space-y-1">
-                {upcoming.map((event) => (
+                {upcomingShown.map((event) => (
                   <EventRow key={event._id} event={event} />
                 ))}
               </div>
             </div>
           )}
 
-          {past.length > 0 && (
+          {pastShown.length > 0 && (
             <div className="opacity-60">
               <h3 className="text-sm font-semibold text-charcoal-400 uppercase tracking-wider mb-4">
                 Past
               </h3>
               <div className="space-y-1">
-                {past.map((event) => (
+                {pastShown.map((event) => (
                   <EventRow key={event._id} event={event} />
                 ))}
               </div>
             </div>
           )}
 
-          {filtered.length === 0 && (
+          {upcomingShown.length + pastShown.length === 0 && (
             <p className="text-charcoal-400 text-center py-12">
-              No events in this category yet.
+              {filter === 'all'
+                ? 'No events scheduled yet.'
+                : 'No events in this category yet.'}
             </p>
           )}
         </>
@@ -71,10 +77,7 @@ export function EventsList({ events }: { events: EventSummary[] }) {
 }
 
 function EventRow({ event }: { event: EventSummary }) {
-  const dateStr = new Date(event.date).toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-  })
+  const dateStr = formatEventDate(event.date)
   const timeStr = formatEventTime(event.date)
 
   return (

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { categoryLabel } from '@/lib/events'
+import { categoryLabel, eventDateParts, formatEventDate } from '@/lib/events'
 
 interface EventCardProps {
   title: string
@@ -16,9 +16,8 @@ export function EventCard({
   hostName,
   category,
 }: EventCardProps) {
-  const d = new Date(date)
-  const month = d.toLocaleDateString('en-US', { month: 'short' }).toUpperCase()
-  const day = d.getDate()
+  const month = formatEventDate(date, 'month').toUpperCase()
+  const { day } = eventDateParts(date)
 
   return (
     <Link

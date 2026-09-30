@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity'
+import { DIETARY_TAGS, MENU_CATEGORIES } from '../../lib/menu'
 
 export const menuItemType = defineType({
   name: 'menuItem',
@@ -24,12 +25,7 @@ export const menuItemType = defineType({
       name: 'category',
       type: 'string',
       options: {
-        list: [
-          { title: 'Mains', value: 'mains' },
-          { title: 'Small Plates', value: 'small-plates' },
-          { title: 'Drinks', value: 'drinks' },
-          { title: 'Desserts', value: 'desserts' },
-        ],
+        list: MENU_CATEGORIES.map(({ value, label }) => ({ title: label, value })),
       },
       validation: (rule) => rule.required(),
     }),
@@ -39,12 +35,7 @@ export const menuItemType = defineType({
       type: 'array',
       of: [{ type: 'string' }],
       options: {
-        list: [
-          { title: 'Raw', value: 'raw' },
-          { title: 'Gluten-Free', value: 'gluten-free' },
-          { title: 'Nut-Free', value: 'nut-free' },
-          { title: 'Soy-Free', value: 'soy-free' },
-        ],
+        list: DIETARY_TAGS.map(({ value, label }) => ({ title: label, value })),
       },
     }),
     defineField({

@@ -1,32 +1,18 @@
 import { sanityFetch } from '@/sanity/lib/fetch'
 import { MENU_ITEMS_QUERY } from '@/sanity/lib/queries'
+import { isSanityConfigured } from '@/sanity/env'
+import { MENU_CATEGORIES, dietaryTagLabel, type MenuItem } from '@/lib/menu'
 
 export const metadata = {
   title: 'Menu — Caravan of Dreams',
   description: 'Organic vegan cuisine at Caravan of Dreams. Your meal is your ticket to dream.',
 }
 
-interface MenuItem {
-  _id: string
-  name: string
-  description: string
-  price: number
-  category: string
-  dietaryTags?: string[]
-}
-
-const categoryOrder = ['mains', 'small-plates', 'drinks', 'desserts']
-const categoryNames: Record<string, string> = {
-  mains: 'Mains',
-  'small-plates': 'Small Plates',
-  drinks: 'Drinks',
-  desserts: 'Desserts',
-}
-
+// Shown only when Sanity is not configured.
 const demoItems: MenuItem[] = [
-  { _id: 'm1', name: 'Tri Color Pasta', description: 'Saut\u00e9ed asparagus, mushrooms, olives, green peas, broccoli & baby shallots in tomato-cashew cream sauce with quinoa pasta, finished with avocado.', price: 18.95, category: 'mains', dietaryTags: ['gluten-free'] },
+  { _id: 'm1', name: 'Tri Color Pasta', description: 'Sautéed asparagus, mushrooms, olives, green peas, broccoli & baby shallots in tomato-cashew cream sauce with quinoa pasta, finished with avocado.', price: 18.95, category: 'mains', dietaryTags: ['gluten-free'] },
   { _id: 'm2', name: 'Miso Glazed Squash Platter', description: 'Roasted butternut squash with miso-maple glaze, wild rice, steamed greens & tahini drizzle.', price: 17.95, category: 'mains', dietaryTags: [] },
-  { _id: 'm3', name: 'Raw Nori Rolls', description: 'Fresh vegetables, avocado & sprouted sunflower seed p\u00e2t\u00e9 wrapped in nori with ginger-tamari dipping sauce.', price: 16.50, category: 'mains', dietaryTags: ['raw', 'gluten-free'] },
+  { _id: 'm3', name: 'Raw Nori Rolls', description: 'Fresh vegetables, avocado & sprouted sunflower seed pâté wrapped in nori with ginger-tamari dipping sauce.', price: 16.50, category: 'mains', dietaryTags: ['raw', 'gluten-free'] },
   { _id: 'm4', name: 'Un-Chicken Caesar Salad', description: 'Crispy marinated tempeh, romaine hearts, hemp seed parmesan & cashew caesar dressing.', price: 15.95, category: 'mains', dietaryTags: [] },
   { _id: 'm5', name: 'Raw Nachos', description: 'Flax crackers topped with cashew nacho cheese, pico de gallo, guacamole & coconut sour cream.', price: 13.95, category: 'small-plates', dietaryTags: ['raw', 'gluten-free'] },
   { _id: 'm6', name: 'Patatas Bravas', description: 'Crispy local fingerling potatoes with smoky romesco sauce & garlic aioli.', price: 11.95, category: 'small-plates', dietaryTags: ['gluten-free'] },
@@ -45,15 +31,13 @@ export default async function MenuPage() {
     tags: ['menuItem'],
   })
 
-  const displayItems = items.length > 0 ? items : demoItems
+  const displayItems = items.length > 0 || isSanityConfigured ? items : demoItems
 
-  const grouped = categoryOrder.reduce(
-    (acc, cat) => {
-      acc[cat] = displayItems.filter((item) => item.category === cat)
-      return acc
-    },
-    {} as Record<string, MenuItem[]>
-  )
+  const grouped = new Map<string, MenuItem[]>()
+  for (const item of displayItems) {
+    grouped.set(item.category, [...(grouped.get(item.category) ?? []), item])
+  }
+  const sections = MENU_CATEGORIES.filter((cat) => grouped.has(cat.value))
 
   return (
     <div className="max-w-3xl mx-auto px-6 py-16">
@@ -68,50 +52,46 @@ export default async function MenuPage() {
         </span>
       </p>
 
-      {displayItems.length > 0 ? (
+      {sections.length > 0 ? (
         <div className="space-y-12">
-          {categoryOrder.map((cat) => {
-            const catItems = grouped[cat]
-            if (!catItems || catItems.length === 0) return null
-            return (
-              <section key={cat}>
-                <h2 className="font-serif text-2xl text-charcoal-700 border-b border-charcoal-200 pb-2 mb-6">
-                  {categoryNames[cat]}
-                </h2>
-                <div className="space-y-6">
-                  {catItems.map((item) => (
-                    <div key={item._id} className="flex justify-between gap-4">
-                      <div>
-                        <h3 className="font-semibold text-charcoal-700">
-                          {item.name}
-                        </h3>
-                        {item.description && (
-                          <p className="text-sm text-charcoal-400 mt-1">
-                            {item.description}
-                          </p>
-                        )}
-                        {item.dietaryTags && item.dietaryTags.length > 0 && (
-                          <div className="flex gap-2 mt-2">
-                            {item.dietaryTags.map((tag) => (
-                              <span
-                                key={tag}
-                                className="text-xs text-sage-600 bg-sage-50 px-2 py-0.5 rounded-pill"
-                              >
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                      <span className="text-charcoal-500 font-medium whitespace-nowrap">
-                        ${item.price.toFixed(2)}
-                      </span>
+          {sections.map((cat) => (
+            <section key={cat.value}>
+              <h2 className="font-serif text-2xl text-charcoal-700 border-b border-charcoal-200 pb-2 mb-6">
+                {cat.label}
+              </h2>
+              <div className="space-y-6">
+                {grouped.get(cat.value)!.map((item) => (
+                  <div key={item._id} className="flex justify-between gap-4">
+                    <div>
+                      <h3 className="font-semibold text-charcoal-700">
+                        {item.name}
+                      </h3>
+                      {item.description && (
+                        <p className="text-sm text-charcoal-400 mt-1">
+                          {item.description}
+                        </p>
+                      )}
+                      {item.dietaryTags && item.dietaryTags.length > 0 && (
+                        <div className="flex gap-2 mt-2">
+                          {item.dietaryTags.map((tag) => (
+                            <span
+                              key={tag}
+                              className="text-xs text-sage-600 bg-sage-50 px-2 py-0.5 rounded-pill"
+                            >
+                              {dietaryTagLabel(tag)}
+                            </span>
+                          ))}
+                        </div>
+                      )}
                     </div>
-                  ))}
-                </div>
-              </section>
-            )
-          })}
+                    <span className="text-charcoal-500 font-medium whitespace-nowrap">
+                      ${item.price.toFixed(2)}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ))}
         </div>
       ) : (
         <p className="text-charcoal-400 text-center py-12">

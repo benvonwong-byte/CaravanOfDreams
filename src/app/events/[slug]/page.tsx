@@ -1,11 +1,27 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { sanityFetch } from '@/sanity/lib/fetch'
-import { EVENT_BY_SLUG_QUERY } from '@/sanity/lib/queries'
+import { EVENT_BY_SLUG_QUERY, EVENT_SLUGS_QUERY } from '@/sanity/lib/queries'
+import { isSanityConfigured } from '@/sanity/env'
 import { PortableText } from 'next-sanity'
 import { portableTextComponents } from '@/components/PortableTextComponents'
-import { categoryLabel, formatEventTime, type EventDetail } from '@/lib/events'
+import {
+  categoryLabel,
+  formatEventDate,
+  formatEventTime,
+  type EventDetail,
+} from '@/lib/events'
 import { DEMO_EVENTS } from '@/lib/demo-events'
+
+// Pre-render every approved event; unknown slugs still render on demand.
+export async function generateStaticParams() {
+  const slugs = await sanityFetch<{ slug: string }[]>({
+    query: EVENT_SLUGS_QUERY,
+    tags: ['event'],
+  })
+  if (slugs.length > 0 || isSanityConfigured) return slugs
+  return DEMO_EVENTS.map((e) => ({ slug: e.slug.current }))
+}
 
 export default async function EventPage({
   params,
@@ -21,16 +37,12 @@ export default async function EventPage({
   })
 
   const displayEvent =
-    event ?? DEMO_EVENTS.find((e) => e.slug.current === slug)
+    event ??
+    (isSanityConfigured ? null : DEMO_EVENTS.find((e) => e.slug.current === slug))
 
   if (!displayEvent) notFound()
 
-  const dateStr = new Date(displayEvent.date).toLocaleDateString('en-US', {
-    weekday: 'long',
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-  })
+  const dateStr = formatEventDate(displayEvent.date, 'long')
   const timeStr = formatEventTime(displayEvent.date)
 
   return (

@@ -2,15 +2,15 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { formatEventTime, type EventSummary } from '@/lib/events'
+import { eventDateParts, formatEventTime, type EventSummary } from '@/lib/events'
 
 interface CalendarProps {
   events: EventSummary[]
-  filter: string
 }
 
-export function Calendar({ events, filter }: CalendarProps) {
+export function Calendar({ events }: CalendarProps) {
   const [currentDate, setCurrentDate] = useState(new Date())
+  const [selectedDay, setSelectedDay] = useState<number | null>(null)
 
   const year = currentDate.getFullYear()
   const month = currentDate.getMonth()
@@ -21,24 +21,19 @@ export function Calendar({ events, filter }: CalendarProps) {
     year: 'numeric',
   })
 
-  const filtered = events.filter(
-    (e) => filter === 'all' || e.category === filter
-  )
-
   const eventsByDay: Record<number, EventSummary[]> = {}
-  filtered.forEach((event) => {
-    const d = new Date(event.date)
-    if (d.getFullYear() === year && d.getMonth() === month) {
-      const day = d.getDate()
-      if (!eventsByDay[day]) eventsByDay[day] = []
-      eventsByDay[day].push(event)
+  for (const event of events) {
+    const d = eventDateParts(event.date)
+    if (d.year === year && d.month === month) {
+      if (!eventsByDay[d.day]) eventsByDay[d.day] = []
+      eventsByDay[d.day].push(event)
     }
-  })
+  }
 
-  const [selectedDay, setSelectedDay] = useState<number | null>(null)
-
-  const prevMonth = () => setCurrentDate(new Date(year, month - 1, 1))
-  const nextMonth = () => setCurrentDate(new Date(year, month + 1, 1))
+  const goToMonth = (offset: number) => {
+    setCurrentDate(new Date(year, month + offset, 1))
+    setSelectedDay(null)
+  }
 
   const days = []
   for (let i = 0; i < firstDay; i++) {
@@ -74,11 +69,11 @@ export function Calendar({ events, filter }: CalendarProps) {
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <button onClick={prevMonth} className="text-charcoal-500 hover:text-charcoal-700 transition-colors p-1">
+        <button onClick={() => goToMonth(-1)} className="text-charcoal-500 hover:text-charcoal-700 transition-colors p-1">
           &larr;
         </button>
         <h3 className="font-serif text-xl text-charcoal-700">{monthName}</h3>
-        <button onClick={nextMonth} className="text-charcoal-500 hover:text-charcoal-700 transition-colors p-1">
+        <button onClick={() => goToMonth(1)} className="text-charcoal-500 hover:text-charcoal-700 transition-colors p-1">
           &rarr;
         </button>
       </div>

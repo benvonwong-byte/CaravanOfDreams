@@ -4,6 +4,7 @@ import { UPCOMING_EVENTS_QUERY } from '@/sanity/lib/queries'
 import { EventCard } from '@/components/EventCard'
 import type { EventSummary } from '@/lib/events'
 import { DEMO_EVENTS } from '@/lib/demo-events'
+import { isSanityConfigured } from '@/sanity/env'
 
 export async function UpcomingEvents() {
   const events = await sanityFetch<EventSummary[]>({
@@ -11,7 +12,8 @@ export async function UpcomingEvents() {
     tags: ['event'],
   })
 
-  const displayEvents = events.length > 0 ? events : DEMO_EVENTS.slice(0, 4)
+  const displayEvents =
+    events.length > 0 || isSanityConfigured ? events : DEMO_EVENTS.slice(0, 4)
 
   return (
     <section className="py-24 px-6 bg-cream-300/50">

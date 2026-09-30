@@ -25,7 +25,10 @@ export async function sanityFetch<T>({
     return await client.fetch<T>(query, params, {
       next: {
         tags,
-        revalidate: tags.length ? false : 60,
+        // The webhook revalidates tagged pages on content edits. The hourly
+        // fallback keeps time-dependent queries (`date >= now()`) and the
+        // upcoming/past split from going stale between edits.
+        revalidate: tags.length ? 3600 : 60,
       },
     })
   } catch (error) {

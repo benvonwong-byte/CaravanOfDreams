@@ -2,8 +2,9 @@ import Link from 'next/link'
 import { sanityFetch } from '@/sanity/lib/fetch'
 import { ALL_EVENTS_QUERY } from '@/sanity/lib/queries'
 import { EventsList } from '@/components/events/EventsList'
-import type { EventSummary } from '@/lib/events'
+import { splitUpcomingAndPast, type EventSummary } from '@/lib/events'
 import { DEMO_EVENT_SUMMARIES } from '@/lib/demo-events'
+import { isSanityConfigured } from '@/sanity/env'
 
 export const metadata = {
   title: 'Events — Caravan of Dreams',
@@ -16,7 +17,10 @@ export default async function EventsPage() {
     tags: ['event'],
   })
 
-  const displayEvents = events.length > 0 ? events : DEMO_EVENT_SUMMARIES
+  const displayEvents =
+    events.length > 0 || isSanityConfigured ? events : DEMO_EVENT_SUMMARIES
+
+  const { upcoming, past } = splitUpcomingAndPast(displayEvents)
 
   return (
     <div className="max-w-4xl mx-auto px-6 py-16">
@@ -29,7 +33,7 @@ export default async function EventsPage() {
         </p>
       </div>
 
-      <EventsList events={displayEvents} />
+      <EventsList upcoming={upcoming} past={past} />
 
       <div className="mt-16 text-center p-8 bg-sage-50 rounded-card">
         <p className="font-serif text-xl text-charcoal-600 mb-4">
