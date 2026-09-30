@@ -10,6 +10,7 @@ export function SpaceTeaser() {
             src="/images/interior-1.jpg"
             alt="Interior of Caravan of Dreams"
             fill
+            sizes="(min-width: 1024px) 1024px, 100vw"
             className="object-cover"
           />
         </div>

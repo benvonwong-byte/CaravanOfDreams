@@ -1,4 +1,5 @@
 import { EventForm } from '@/components/host/EventForm'
+import { SITE } from '@/lib/site'
 
 export const metadata = {
   title: 'Host an Event — Caravan of Dreams',
@@ -51,7 +52,7 @@ export default function HostPage() {
             custom menus. Reach out and we&apos;ll craft the perfect evening.
           </p>
           <a
-            href="mailto:events@caravanofdreams.net"
+            href={`mailto:${SITE.eventsEmail}`}
             className="inline-block px-6 py-2 border-2 border-charcoal-300 text-charcoal-600 rounded-button text-sm font-semibold hover:bg-charcoal-100 transition-colors"
           >
             Inquire About Private Events

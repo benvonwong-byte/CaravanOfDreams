@@ -1,13 +1,6 @@
 import Link from 'next/link'
 import { MobileNav } from './MobileNav'
-
-const navLinks = [
-  { href: '/events', label: 'Events' },
-  { href: '/host', label: 'Host' },
-  { href: '/space', label: 'The Space' },
-  { href: '/menu', label: 'Menu' },
-  { href: '/about', label: 'About' },
-]
+import { NAV_LINKS } from '@/lib/site'
 
 export function Header() {
   return (
@@ -21,7 +14,7 @@ export function Header() {
         </Link>
 
         <ul className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
+          {NAV_LINKS.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
@@ -33,7 +26,7 @@ export function Header() {
           ))}
         </ul>
 
-        <MobileNav links={navLinks} />
+        <MobileNav links={NAV_LINKS} />
       </nav>
     </header>
   )

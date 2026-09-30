@@ -8,6 +8,7 @@ export function Hero() {
         src="/images/storefront.jpg"
         alt="Caravan of Dreams storefront"
         fill
+        sizes="100vw"
         className="object-cover"
         priority
       />

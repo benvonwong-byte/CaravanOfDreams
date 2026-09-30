@@ -1,5 +1,7 @@
 import { defineQuery } from 'next-sanity'
 
+// List queries project only the fields their components render.
+
 export const UPCOMING_EVENTS_QUERY = defineQuery(
   `*[_type == "event" && status == "approved" && date >= now()] | order(date asc)[0...4]{
     _id,
@@ -7,8 +9,7 @@ export const UPCOMING_EVENTS_QUERY = defineQuery(
     slug,
     date,
     hostName,
-    category,
-    featuredImage
+    category
   }`
 )
 
@@ -20,8 +21,13 @@ export const ALL_EVENTS_QUERY = defineQuery(
     date,
     endDate,
     hostName,
-    category,
-    featuredImage
+    category
+  }`
+)
+
+export const EVENT_SLUGS_QUERY = defineQuery(
+  `*[_type == "event" && status == "approved" && defined(slug.current)]{
+    "slug": slug.current
   }`
 )
 
@@ -47,8 +53,7 @@ export const MENU_ITEMS_QUERY = defineQuery(
     description,
     price,
     category,
-    dietaryTags,
-    image
+    dietaryTags
   }`
 )
 

@@ -31,6 +31,7 @@ export function HostCTA() {
             src="/images/live-music.jpg"
             alt="Live event at Caravan of Dreams"
             fill
+            sizes="(min-width: 896px) 448px, (min-width: 768px) 50vw, 100vw"
             className="object-cover"
           />
         </div>

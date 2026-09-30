@@ -1,17 +1,26 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { sanityFetch } from '@/sanity/lib/fetch'
-import { EVENT_BY_SLUG_QUERY } from '@/sanity/lib/queries'
+import { EVENT_BY_SLUG_QUERY, EVENT_SLUGS_QUERY } from '@/sanity/lib/queries'
+import { isSanityConfigured } from '@/sanity/env'
 import { PortableText } from 'next-sanity'
 import { portableTextComponents } from '@/components/PortableTextComponents'
+import {
+  categoryLabel,
+  formatEventDate,
+  formatEventTime,
+  type EventDetail,
+} from '@/lib/events'
+import { DEMO_EVENTS } from '@/lib/demo-events'
 
-const categoryLabels: Record<string, string> = {
-  talk: 'Talk',
-  hackathon: 'Hackathon',
-  gathering: 'Gathering',
-  workshop: 'Workshop',
-  performance: 'Performance',
-  screening: 'Screening',
+// Pre-render every approved event; unknown slugs still render on demand.
+export async function generateStaticParams() {
+  const slugs = await sanityFetch<{ slug: string }[]>({
+    query: EVENT_SLUGS_QUERY,
+    tags: ['event'],
+  })
+  if (slugs.length > 0 || isSanityConfigured) return slugs
+  return DEMO_EVENTS.map((e) => ({ slug: e.slug.current }))
 }
 
 export default async function EventPage({
@@ -20,102 +29,21 @@ export default async function EventPage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const event = await sanityFetch<any>({
+  const event = await sanityFetch<EventDetail | null>({
     query: EVENT_BY_SLUG_QUERY,
     params: { slug },
     tags: ['event'],
+    fallback: null,
   })
 
-  const demoEvents: Record<string, any> = {
-    'future-of-food-systems': {
-      _id: 'demo-1',
-      title: 'The Future of Food Systems',
-      slug: { current: 'future-of-food-systems' },
-      description: [{ _type: 'block', _key: 'b1', children: [{ _type: 'span', _key: 's1', text: 'Join Maria Chen for a deep conversation about regenerative agriculture, local food networks, and how cities can feed themselves sustainably. We\'ll explore community-supported agriculture models, urban farming innovations, and the role of restaurants like Caravan in building a more resilient food system. Open discussion follows — bring your questions, your ideas, and your appetite.' }] }],
-      date: '2026-03-15T19:00:00Z',
-      endDate: '2026-03-15T21:00:00Z',
-      hostName: 'Maria Chen',
-      hostBio: 'Urban agriculture researcher at NYU, food systems advocate, and author of "Growing Forward: Cities and the Future of Food."',
-      category: 'talk',
-      featuredImage: null,
-    },
-    'climate-data-hackathon': {
-      _id: 'demo-2',
-      title: 'Climate Data Hackathon',
-      slug: { current: 'climate-data-hackathon' },
-      description: [{ _type: 'block', _key: 'b2', children: [{ _type: 'span', _key: 's2', text: 'A full-day hackathon building tools and visualizations with open climate datasets. Teams will work with NYC open data, NOAA climate records, and EPA environmental justice data. All skill levels welcome — designers, developers, data scientists, and storytellers. Lunch and snacks provided (organic and vegan, of course). Bring a laptop and curiosity.' }] }],
-      date: '2026-03-22T10:00:00Z',
-      endDate: '2026-03-22T18:00:00Z',
-      hostName: 'Open Climate Collective',
-      hostBio: 'A collective of developers, scientists, and designers working on open-source climate solutions.',
-      category: 'hackathon',
-      featuredImage: null,
-    },
-    'fermentation-workshop': {
-      _id: 'demo-3',
-      title: 'Fermentation Workshop',
-      slug: { current: 'fermentation-workshop' },
-      description: [{ _type: 'block', _key: 'b3', children: [{ _type: 'span', _key: 's3', text: 'Learn the art and science of fermentation with Angel Moreno, founder of Caravan of Dreams. Make your own kimchi, kombucha, and tempeh to take home. We\'ll cover the biology of fermentation, its health benefits, and traditional techniques from cultures around the world. All materials provided — just bring jars and enthusiasm.' }] }],
-      date: '2026-03-29T14:00:00Z',
-      endDate: '2026-03-29T16:30:00Z',
-      hostName: 'Angel Moreno',
-      hostBio: 'Founder of Caravan of Dreams, nutrition scholar, musician, and lifelong advocate for plant-based living.',
-      category: 'workshop',
-      featuredImage: null,
-    },
-    'poetry-and-resistance': {
-      _id: 'demo-4',
-      title: 'Poetry & Resistance: An Evening of Spoken Word',
-      slug: { current: 'poetry-and-resistance' },
-      description: [{ _type: 'block', _key: 'b4', children: [{ _type: 'span', _key: 's4', text: 'An evening of spoken word poetry in the tradition of the East Village\'s rich literary history. Featuring five poets exploring themes of resistance, hope, community, and change. Open mic follows — bring your words. In the spirit of Ginsberg, Baraka, and the Nuyorican poets who made this neighborhood a crucible of American literature.' }] }],
-      date: '2026-04-05T20:00:00Z',
-      endDate: '2026-04-05T22:00:00Z',
-      hostName: 'East Village Poetry Collective',
-      hostBio: 'A community of poets keeping the East Village\'s literary tradition alive through monthly readings and workshops.',
-      category: 'performance',
-      featuredImage: null,
-    },
-    'mutual-aid-planning': {
-      _id: 'demo-5',
-      title: 'Mutual Aid Network Planning Session',
-      slug: { current: 'mutual-aid-planning' },
-      description: [{ _type: 'block', _key: 'b5', children: [{ _type: 'span', _key: 's5', text: 'Join the LES Community Coalition to help plan and expand our neighborhood mutual aid network. We\'ll discuss food distribution, community fridges, skill-sharing programs, and how to build resilient support systems that don\'t depend on institutions. Whether you\'re already involved or just curious, pull up a chair.' }] }],
-      date: '2026-04-12T11:00:00Z',
-      endDate: '2026-04-12T14:00:00Z',
-      hostName: 'LES Community Coalition',
-      hostBio: 'A grassroots coalition of Lower East Side residents organizing around housing, food security, and community resilience.',
-      category: 'gathering',
-      featuredImage: null,
-    },
-    'seeds-of-change-screening': {
-      _id: 'demo-6',
-      title: 'Documentary Screening: Seeds of Change',
-      slug: { current: 'seeds-of-change-screening' },
-      description: [{ _type: 'block', _key: 'b6', children: [{ _type: 'span', _key: 's6', text: 'A screening of "Seeds of Change," a documentary exploring how small-scale farmers around the world are preserving biodiversity and fighting corporate monoculture. Post-screening discussion with the filmmaker and local food sovereignty advocates. Organic popcorn provided.' }] }],
-      date: '2026-04-19T19:30:00Z',
-      endDate: '2026-04-19T21:30:00Z',
-      hostName: 'Green Films NYC',
-      hostBio: 'An independent film collective dedicated to environmental storytelling and community screenings.',
-      category: 'screening',
-      featuredImage: null,
-    },
-  }
-
-  const displayEvent = event || demoEvents[slug]
+  const displayEvent =
+    event ??
+    (isSanityConfigured ? null : DEMO_EVENTS.find((e) => e.slug.current === slug))
 
   if (!displayEvent) notFound()
 
-  const d = new Date(displayEvent.date)
-  const dateStr = d.toLocaleDateString('en-US', {
-    weekday: 'long',
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-  })
-  const timeStr = d.toLocaleTimeString('en-US', {
-    hour: 'numeric',
-    minute: '2-digit',
-  })
+  const dateStr = formatEventDate(displayEvent.date, 'long')
+  const timeStr = formatEventTime(displayEvent.date)
 
   return (
     <div className="max-w-3xl mx-auto px-6 py-16">
@@ -127,7 +55,7 @@ export default async function EventPage({
       </Link>
 
       <span className="inline-block text-xs font-semibold text-teal-600 bg-teal-50 px-3 py-1 rounded-pill mb-4">
-        {categoryLabels[displayEvent.category] || displayEvent.category}
+        {categoryLabel(displayEvent.category)}
       </span>
 
       <h1 className="font-serif text-4xl md:text-5xl text-charcoal-700 mb-4">

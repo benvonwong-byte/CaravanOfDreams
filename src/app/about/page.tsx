@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { SITE } from '@/lib/site'
 
 export const metadata = {
   title: 'About — Caravan of Dreams',
@@ -16,7 +17,7 @@ export default function AboutPage() {
         <p>
           In October 1991, Angel Moreno — a Spanish expatriate, nutrition
           scholar, and musician — opened the doors of a small restaurant at
-          405 E 6th Street. He called it{' '}
+          {SITE.address.street}. He called it{' '}
           <span className="font-serif italic text-terracotta-500">
             Caravan of Dreams
           </span>
@@ -28,6 +29,7 @@ export default function AboutPage() {
             src="/images/angel-moreno.jpg"
             alt="Angel Moreno, founder of Caravan of Dreams"
             fill
+            sizes="(min-width: 768px) 768px, 100vw"
             className="object-cover"
           />
         </div>
@@ -45,6 +47,7 @@ export default function AboutPage() {
             src="/images/early-years.jpg"
             alt="Caravan of Dreams in its early years"
             fill
+            sizes="(min-width: 768px) 768px, 100vw"
             className="object-cover"
           />
         </div>

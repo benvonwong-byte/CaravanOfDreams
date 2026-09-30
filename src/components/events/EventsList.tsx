@@ -5,36 +5,26 @@ import Link from 'next/link'
 import { CategoryFilter } from './CategoryFilter'
 import { ViewToggle } from './ViewToggle'
 import { Calendar } from './Calendar'
+import {
+  categoryLabel,
+  formatEventDate,
+  formatEventTime,
+  type EventSummary,
+} from '@/lib/events'
 
-interface Event {
-  _id: string
-  title: string
-  slug: { current: string }
-  date: string
-  endDate?: string
-  hostName: string
-  category: string
+interface EventsListProps {
+  // Split on the server so the client never renders with a different `now`.
+  upcoming: EventSummary[]
+  past: EventSummary[]
 }
 
-const categoryLabels: Record<string, string> = {
-  talk: 'Talk',
-  hackathon: 'Hackathon',
-  gathering: 'Gathering',
-  workshop: 'Workshop',
-  performance: 'Performance',
-  screening: 'Screening',
-}
-
-export function EventsList({ events }: { events: Event[] }) {
+export function EventsList({ upcoming, past }: EventsListProps) {
   const [filter, setFilter] = useState('all')
   const [view, setView] = useState<'list' | 'calendar'>('list')
 
-  const now = new Date()
-  const filtered = events.filter(
-    (e) => filter === 'all' || e.category === filter
-  )
-  const upcoming = filtered.filter((e) => new Date(e.date) >= now)
-  const past = filtered.filter((e) => new Date(e.date) < now)
+  const matches = (e: EventSummary) => filter === 'all' || e.category === filter
+  const upcomingShown = upcoming.filter(matches)
+  const pastShown = past.filter(matches)
 
   return (
     <div>
@@ -44,38 +34,40 @@ export function EventsList({ events }: { events: Event[] }) {
       </div>
 
       {view === 'calendar' ? (
-        <Calendar events={events} filter={filter} />
+        <Calendar events={[...upcomingShown, ...pastShown]} />
       ) : (
         <>
-          {upcoming.length > 0 && (
+          {upcomingShown.length > 0 && (
             <div className="mb-12">
               <h3 className="text-sm font-semibold text-charcoal-400 uppercase tracking-wider mb-4">
                 Upcoming
               </h3>
               <div className="space-y-1">
-                {upcoming.map((event) => (
+                {upcomingShown.map((event) => (
                   <EventRow key={event._id} event={event} />
                 ))}
               </div>
             </div>
           )}
 
-          {past.length > 0 && (
+          {pastShown.length > 0 && (
             <div className="opacity-60">
               <h3 className="text-sm font-semibold text-charcoal-400 uppercase tracking-wider mb-4">
                 Past
               </h3>
               <div className="space-y-1">
-                {past.map((event) => (
+                {pastShown.map((event) => (
                   <EventRow key={event._id} event={event} />
                 ))}
               </div>
             </div>
           )}
 
-          {filtered.length === 0 && (
+          {upcomingShown.length + pastShown.length === 0 && (
             <p className="text-charcoal-400 text-center py-12">
-              No events in this category yet.
+              {filter === 'all'
+                ? 'No events scheduled yet.'
+                : 'No events in this category yet.'}
             </p>
           )}
         </>
@@ -84,16 +76,9 @@ export function EventsList({ events }: { events: Event[] }) {
   )
 }
 
-function EventRow({ event }: { event: Event }) {
-  const d = new Date(event.date)
-  const dateStr = d.toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-  })
-  const timeStr = d.toLocaleTimeString('en-US', {
-    hour: 'numeric',
-    minute: '2-digit',
-  })
+function EventRow({ event }: { event: EventSummary }) {
+  const dateStr = formatEventDate(event.date)
+  const timeStr = formatEventTime(event.date)
 
   return (
     <Link
@@ -111,7 +96,7 @@ function EventRow({ event }: { event: Event }) {
       </span>
       <span className="text-sm text-charcoal-400">{timeStr}</span>
       <span className="hidden sm:inline text-xs font-semibold text-teal-600 bg-teal-50 px-2 py-0.5 rounded-pill">
-        {categoryLabels[event.category] || event.category}
+        {categoryLabel(event.category)}
       </span>
     </Link>
   )

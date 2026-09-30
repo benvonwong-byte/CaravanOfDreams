@@ -1,13 +1,10 @@
 'use client'
 
+import { EVENT_CATEGORIES } from '@/lib/events'
+
 const categories = [
   { value: 'all', label: 'All' },
-  { value: 'talk', label: 'Talks' },
-  { value: 'hackathon', label: 'Hackathons' },
-  { value: 'gathering', label: 'Gatherings' },
-  { value: 'workshop', label: 'Workshops' },
-  { value: 'performance', label: 'Performances' },
-  { value: 'screening', label: 'Screenings' },
+  ...EVENT_CATEGORIES.map((c) => ({ value: c.value, label: `${c.label}s` })),
 ]
 
 interface CategoryFilterProps {
