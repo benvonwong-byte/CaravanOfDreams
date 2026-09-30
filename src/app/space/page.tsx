@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { SITE } from '@/lib/site'
 
 export const metadata = {
   title: 'The Space — Caravan of Dreams',
@@ -13,8 +14,8 @@ export default function SpacePage() {
         The Space
       </h1>
       <p className="text-charcoal-500 text-lg mb-12">
-        405 E 6th Street — between 1st Ave &amp; Avenue A, in the heart of the
-        East Village.
+        {SITE.address.street} — between 1st Ave &amp; Avenue A, in the heart of
+        the East Village.
       </p>
 
       <div className="relative aspect-[21/9] rounded-card overflow-hidden mb-16">
@@ -22,6 +23,7 @@ export default function SpacePage() {
           src="/images/outdoor-patio.jpg"
           alt="Caravan of Dreams outdoor patio"
           fill
+          sizes="(min-width: 1024px) 1024px, 100vw"
           className="object-cover"
         />
       </div>
@@ -58,6 +60,7 @@ export default function SpacePage() {
             src="/images/interior-2.jpg"
             alt="Caravan of Dreams interior"
             fill
+            sizes="(min-width: 1024px) 512px, (min-width: 768px) 50vw, 100vw"
             className="object-cover"
           />
         </div>
@@ -66,6 +69,7 @@ export default function SpacePage() {
             src="/images/interior-3.jpg"
             alt="Caravan of Dreams dining area"
             fill
+            sizes="(min-width: 1024px) 512px, (min-width: 768px) 50vw, 100vw"
             className="object-cover"
           />
         </div>
@@ -90,7 +94,7 @@ export default function SpacePage() {
             Host a Community Event
           </Link>
           <a
-            href="mailto:events@caravanofdreams.net"
+            href={`mailto:${SITE.eventsEmail}`}
             className="inline-block px-8 py-3 border-2 border-charcoal-300 text-charcoal-600 rounded-button font-semibold hover:bg-charcoal-100 transition-colors"
           >
             Inquire About Private Events

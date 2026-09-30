@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { SITE } from '@/lib/site'
 
 /* ─── tiny SVG decorations ─── */
 
@@ -460,6 +461,7 @@ export default function BrooklynBugsCollabPage() {
               src="/images/food-1.jpg"
               alt="Organic vegan dish at Caravan of Dreams"
               fill
+              sizes="(min-width: 768px) 50vw, 100vw"
               className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-charcoal-900/60 to-transparent" />
@@ -492,7 +494,7 @@ export default function BrooklynBugsCollabPage() {
           </p>
 
           <a
-            href="mailto:events@caravanofdreams.net?subject=Crawl%20%26%20Bloom%20%E2%80%94%20RSVP&body=I%E2%80%99d%20like%20to%20reserve%20a%20seat%20at%20Crawl%20%26%20Bloom%20on%20April%2026%2C%202026.%0A%0AName%3A%0ANumber%20of%20guests%3A%0AAny%20allergies%3A"
+            href={`mailto:${SITE.eventsEmail}?subject=Crawl%20%26%20Bloom%20%E2%80%94%20RSVP&body=I%E2%80%99d%20like%20to%20reserve%20a%20seat%20at%20Crawl%20%26%20Bloom%20on%20April%2026%2C%202026.%0A%0AName%3A%0ANumber%20of%20guests%3A%0AAny%20allergies%3A`}
             className="inline-block px-12 py-5 bg-sage-500 text-cream-50 rounded-pill font-semibold text-lg hover:bg-sage-400 transition-all hover:shadow-elevated"
           >
             Reserve Your Seat — $95

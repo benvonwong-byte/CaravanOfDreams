@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { NAV_LINKS, SITE } from '@/lib/site'
 
 export function Footer() {
   return (
@@ -20,19 +21,13 @@ export function Footer() {
               Navigate
             </h4>
             <ul className="space-y-2">
-              {[
-                { href: '/events', label: 'Events' },
-                { href: '/host', label: 'Host an Event' },
-                { href: '/space', label: 'The Space' },
-                { href: '/menu', label: 'Menu' },
-                { href: '/about', label: 'About' },
-              ].map((link) => (
+              {NAV_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
                     className="text-sm text-cream-400 hover:text-terracotta-300 transition-colors"
                   >
-                    {link.label}
+                    {link.longLabel ?? link.label}
                   </Link>
                 </li>
               ))}
@@ -44,9 +39,9 @@ export function Footer() {
               Find Us
             </h4>
             <address className="not-italic text-sm text-cream-400 leading-relaxed">
-              405 E 6th Street<br />
-              New York, NY 10009<br />
-              Between 1st Ave &amp; Ave A
+              {SITE.address.street}<br />
+              {SITE.address.cityLine}<br />
+              {SITE.address.crossStreets}
             </address>
           </div>
         </div>
