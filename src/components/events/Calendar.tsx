@@ -2,18 +2,10 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-
-interface Event {
-  _id: string
-  title: string
-  slug: { current: string }
-  date: string
-  hostName: string
-  category: string
-}
+import { formatEventTime, type EventSummary } from '@/lib/events'
 
 interface CalendarProps {
-  events: Event[]
+  events: EventSummary[]
   filter: string
 }
 
@@ -33,7 +25,7 @@ export function Calendar({ events, filter }: CalendarProps) {
     (e) => filter === 'all' || e.category === filter
   )
 
-  const eventsByDay: Record<number, Event[]> = {}
+  const eventsByDay: Record<number, EventSummary[]> = {}
   filtered.forEach((event) => {
     const d = new Date(event.date)
     if (d.getFullYear() === year && d.getMonth() === month) {
@@ -105,10 +97,7 @@ export function Calendar({ events, filter }: CalendarProps) {
         <div className="mt-6 space-y-2">
           {selectedEvents.length > 0 ? (
             selectedEvents.map((event) => {
-              const time = new Date(event.date).toLocaleTimeString('en-US', {
-                hour: 'numeric',
-                minute: '2-digit',
-              })
+              const time = formatEventTime(event.date)
               return (
                 <Link
                   key={event._id}

@@ -5,27 +5,13 @@ import Link from 'next/link'
 import { CategoryFilter } from './CategoryFilter'
 import { ViewToggle } from './ViewToggle'
 import { Calendar } from './Calendar'
+import {
+  categoryLabel,
+  formatEventTime,
+  type EventSummary,
+} from '@/lib/events'
 
-interface Event {
-  _id: string
-  title: string
-  slug: { current: string }
-  date: string
-  endDate?: string
-  hostName: string
-  category: string
-}
-
-const categoryLabels: Record<string, string> = {
-  talk: 'Talk',
-  hackathon: 'Hackathon',
-  gathering: 'Gathering',
-  workshop: 'Workshop',
-  performance: 'Performance',
-  screening: 'Screening',
-}
-
-export function EventsList({ events }: { events: Event[] }) {
+export function EventsList({ events }: { events: EventSummary[] }) {
   const [filter, setFilter] = useState('all')
   const [view, setView] = useState<'list' | 'calendar'>('list')
 
@@ -84,16 +70,12 @@ export function EventsList({ events }: { events: Event[] }) {
   )
 }
 
-function EventRow({ event }: { event: Event }) {
-  const d = new Date(event.date)
-  const dateStr = d.toLocaleDateString('en-US', {
+function EventRow({ event }: { event: EventSummary }) {
+  const dateStr = new Date(event.date).toLocaleDateString('en-US', {
     month: 'short',
     day: 'numeric',
   })
-  const timeStr = d.toLocaleTimeString('en-US', {
-    hour: 'numeric',
-    minute: '2-digit',
-  })
+  const timeStr = formatEventTime(event.date)
 
   return (
     <Link
@@ -111,7 +93,7 @@ function EventRow({ event }: { event: Event }) {
       </span>
       <span className="text-sm text-charcoal-400">{timeStr}</span>
       <span className="hidden sm:inline text-xs font-semibold text-teal-600 bg-teal-50 px-2 py-0.5 rounded-pill">
-        {categoryLabels[event.category] || event.category}
+        {categoryLabel(event.category)}
       </span>
     </Link>
   )

@@ -2,6 +2,11 @@
 
 import { useState } from 'react'
 import { submitEvent } from '@/app/actions/submitEvent'
+import { EVENT_CATEGORIES } from '@/lib/events'
+
+const labelClass = 'block text-sm font-medium text-charcoal-600 mb-1'
+const inputClass =
+  'w-full px-4 py-3 rounded-button border border-charcoal-200 bg-cream-50 text-charcoal-700 focus:outline-none focus:ring-2 focus:ring-terracotta-500/50 focus:border-terracotta-500'
 
 export function EventForm() {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
@@ -50,7 +55,7 @@ export function EventForm() {
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-charcoal-600 mb-1">
+          <label htmlFor="name" className={labelClass}>
             Your name *
           </label>
           <input
@@ -58,11 +63,11 @@ export function EventForm() {
             name="name"
             type="text"
             required
-            className="w-full px-4 py-3 rounded-button border border-charcoal-200 bg-cream-50 text-charcoal-700 focus:outline-none focus:ring-2 focus:ring-terracotta-500/50 focus:border-terracotta-500"
+            className={inputClass}
           />
         </div>
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-charcoal-600 mb-1">
+          <label htmlFor="email" className={labelClass}>
             Email *
           </label>
           <input
@@ -70,13 +75,13 @@ export function EventForm() {
             name="email"
             type="email"
             required
-            className="w-full px-4 py-3 rounded-button border border-charcoal-200 bg-cream-50 text-charcoal-700 focus:outline-none focus:ring-2 focus:ring-terracotta-500/50 focus:border-terracotta-500"
+            className={inputClass}
           />
         </div>
       </div>
 
       <div>
-        <label htmlFor="title" className="block text-sm font-medium text-charcoal-600 mb-1">
+        <label htmlFor="title" className={labelClass}>
           Event title *
         </label>
         <input
@@ -84,12 +89,12 @@ export function EventForm() {
           name="title"
           type="text"
           required
-          className="w-full px-4 py-3 rounded-button border border-charcoal-200 bg-cream-50 text-charcoal-700 focus:outline-none focus:ring-2 focus:ring-terracotta-500/50 focus:border-terracotta-500"
+          className={inputClass}
         />
       </div>
 
       <div>
-        <label htmlFor="description" className="block text-sm font-medium text-charcoal-600 mb-1">
+        <label htmlFor="description" className={labelClass}>
           What&apos;s it about? *
         </label>
         <textarea
@@ -97,32 +102,31 @@ export function EventForm() {
           name="description"
           required
           rows={5}
-          className="w-full px-4 py-3 rounded-button border border-charcoal-200 bg-cream-50 text-charcoal-700 focus:outline-none focus:ring-2 focus:ring-terracotta-500/50 focus:border-terracotta-500"
+          className={inputClass}
         />
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div>
-          <label htmlFor="category" className="block text-sm font-medium text-charcoal-600 mb-1">
+          <label htmlFor="category" className={labelClass}>
             Category *
           </label>
           <select
             id="category"
             name="category"
             required
-            className="w-full px-4 py-3 rounded-button border border-charcoal-200 bg-cream-50 text-charcoal-700 focus:outline-none focus:ring-2 focus:ring-terracotta-500/50 focus:border-terracotta-500"
+            className={inputClass}
           >
             <option value="">Select a category</option>
-            <option value="talk">Talk / Lecture</option>
-            <option value="hackathon">Hackathon</option>
-            <option value="workshop">Workshop</option>
-            <option value="gathering">Community Gathering</option>
-            <option value="performance">Performance</option>
-            <option value="screening">Film Screening</option>
+            {EVENT_CATEGORIES.map((c) => (
+              <option key={c.value} value={c.value}>
+                {c.formLabel}
+              </option>
+            ))}
           </select>
         </div>
         <div>
-          <label htmlFor="expectedSize" className="block text-sm font-medium text-charcoal-600 mb-1">
+          <label htmlFor="expectedSize" className={labelClass}>
             Expected attendance
           </label>
           <input
@@ -130,13 +134,13 @@ export function EventForm() {
             name="expectedSize"
             type="number"
             min="1"
-            className="w-full px-4 py-3 rounded-button border border-charcoal-200 bg-cream-50 text-charcoal-700 focus:outline-none focus:ring-2 focus:ring-terracotta-500/50 focus:border-terracotta-500"
+            className={inputClass}
           />
         </div>
       </div>
 
       <div>
-        <label htmlFor="preferredDates" className="block text-sm font-medium text-charcoal-600 mb-1">
+        <label htmlFor="preferredDates" className={labelClass}>
           Preferred date(s) *
         </label>
         <input
@@ -145,19 +149,19 @@ export function EventForm() {
           type="text"
           required
           placeholder="e.g., Any Saturday in April, or March 15th"
-          className="w-full px-4 py-3 rounded-button border border-charcoal-200 bg-cream-50 text-charcoal-700 focus:outline-none focus:ring-2 focus:ring-terracotta-500/50 focus:border-terracotta-500"
+          className={inputClass}
         />
       </div>
 
       <div>
-        <label htmlFor="notes" className="block text-sm font-medium text-charcoal-600 mb-1">
+        <label htmlFor="notes" className={labelClass}>
           Anything else we should know?
         </label>
         <textarea
           id="notes"
           name="notes"
           rows={3}
-          className="w-full px-4 py-3 rounded-button border border-charcoal-200 bg-cream-50 text-charcoal-700 focus:outline-none focus:ring-2 focus:ring-terracotta-500/50 focus:border-terracotta-500"
+          className={inputClass}
         />
       </div>
 

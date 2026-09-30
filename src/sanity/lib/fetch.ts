@@ -3,17 +3,22 @@ import 'server-only'
 import type { QueryParams } from 'next-sanity'
 import { client } from './client'
 
+// Returns `fallback` when Sanity isn't configured or the request fails.
+// The default `[]` suits list queries; pass `fallback: null` for
+// single-document queries so callers can detect "not found".
 export async function sanityFetch<T>({
   query,
   params = {},
   tags = [],
+  fallback = [] as T,
 }: {
   query: string
   params?: QueryParams
   tags?: string[]
+  fallback?: T
 }): Promise<T> {
   if (!client) {
-    return [] as unknown as T
+    return fallback
   }
 
   try {
@@ -25,6 +30,6 @@ export async function sanityFetch<T>({
     })
   } catch (error) {
     console.error('Sanity fetch error:', error)
-    return [] as unknown as T
+    return fallback
   }
 }

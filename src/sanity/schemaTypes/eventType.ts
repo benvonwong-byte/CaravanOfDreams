@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity'
+import { EVENT_CATEGORIES } from '../../lib/events'
 
 export const eventType = defineType({
   name: 'event',
@@ -55,14 +56,7 @@ export const eventType = defineType({
       name: 'category',
       type: 'string',
       options: {
-        list: [
-          { title: 'Talk', value: 'talk' },
-          { title: 'Hackathon', value: 'hackathon' },
-          { title: 'Gathering', value: 'gathering' },
-          { title: 'Workshop', value: 'workshop' },
-          { title: 'Performance', value: 'performance' },
-          { title: 'Screening', value: 'screening' },
-        ],
+        list: EVENT_CATEGORIES.map(({ value, label }) => ({ title: label, value })),
       },
       validation: (rule) => rule.required(),
     }),

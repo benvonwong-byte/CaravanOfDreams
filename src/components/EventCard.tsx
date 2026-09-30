@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { categoryLabel } from '@/lib/events'
 
 interface EventCardProps {
   title: string
@@ -6,15 +7,6 @@ interface EventCardProps {
   date: string
   hostName: string
   category: string
-}
-
-const categoryLabels: Record<string, string> = {
-  talk: 'Talk',
-  hackathon: 'Hackathon',
-  gathering: 'Gathering',
-  workshop: 'Workshop',
-  performance: 'Performance',
-  screening: 'Screening',
 }
 
 export function EventCard({
@@ -42,7 +34,7 @@ export function EventCard({
         </div>
         <div className="flex-1 min-w-0">
           <span className="inline-block text-xs font-semibold text-teal-600 bg-teal-50 px-2 py-0.5 rounded-pill mb-2">
-            {categoryLabels[category] || category}
+            {categoryLabel(category)}
           </span>
           <h3 className="font-serif text-lg text-charcoal-700 group-hover:text-terracotta-500 transition-colors truncate">
             {title}
