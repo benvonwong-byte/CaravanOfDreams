@@ -1,0 +1,415 @@
+{
+  "events": [
+    {
+      "name": "The Science - and Art - of Regenerative Economics: Revolutionary Thinking for a World in Crisis",
+      "date": "2026-09-21T15:00:00.000Z",
+      "endDate": "2026-09-21T17:00:00.000Z",
+      "location": "New York, NY",
+      "url": "https://luma.com/dear-fh7x",
+      "coverImage": "https://images.lumacdn.com/api-uploads/w3/7d4e844e-8fc8-4c37-868a-526865c09525.png",
+      "tags": [
+        "interview"
+      ],
+      "price": "$5"
+    },
+    {
+      "name": "We Already Have the Solutions. So Why Aren't We Using Them? Live Podcast with Dr. Ayana Elizabeth Johnson",
+      "date": "2026-09-21T19:30:00.000Z",
+      "endDate": "2026-09-21T21:30:00.000Z",
+      "location": "New York, NY",
+      "url": "https://luma.com/dear-bt0q",
+      "coverImage": "https://images.lumacdn.com/uploads/t6/41c181db-5601-4119-8fe3-aa762cfea09c.png",
+      "tags": [
+        "interview"
+      ],
+      "price": "$20"
+    },
+    {
+      "name": "Exploring systemic change with the Denizen and DearCrisis communities.",
+      "date": "2026-09-21T23:00:00.000Z",
+      "endDate": "2026-09-22T03:00:00.000Z",
+      "location": "New York, NY",
+      "url": "https://luma.com/dear-ut67",
+      "coverImage": "https://images.lumacdn.com/api-uploads/nf/88e0abcf-3655-4d96-ba30-ec75aad70272.png",
+      "tags": [
+        "workshop"
+      ],
+      "price": "$10+"
+    },
+    {
+      "name": "Our Crises Call for Re-enchantment: a Panel and Portal",
+      "date": "2026-09-22T17:30:00.000Z",
+      "endDate": "2026-09-22T19:30:00.000Z",
+      "location": "New York, NY",
+      "url": "https://luma.com/dear-gq1o",
+      "coverImage": "https://images.lumacdn.com/api-uploads/rt/e1eea486-5e10-420c-8b0a-be91fcbc376a.png",
+      "tags": [
+        "workshop"
+      ],
+      "price": "$12.21+"
+    },
+    {
+      "name": "Imaginarium: An intimate working dinner ft. Nate Hagens",
+      "date": "2026-09-22T21:00:00.000Z",
+      "endDate": "2026-09-22T23:00:00.000Z",
+      "location": "New York, NY",
+      "url": "https://luma.com/dear-3oop",
+      "coverImage": "https://images.lumacdn.com/api-uploads/n5/558e648e-23fd-4567-a781-9bfa482ace5d.png",
+      "tags": [
+        "workshop"
+      ],
+      "price": "$20–90"
+    },
+    {
+      "name": "TrashBlitz with 5 Gyres [Field Trip]",
+      "date": "2026-09-22T21:00:00.000Z",
+      "endDate": "2026-09-22T23:00:00.000Z",
+      "location": "New York, NY",
+      "url": "https://luma.com/dear-nmap",
+      "coverImage": "https://images.lumacdn.com/api-uploads/me/65940dc9-9092-4003-a833-f98689a01bf4.png",
+      "tags": [
+        "field trips"
+      ],
+      "price": "Free"
+    },
+    {
+      "name": "What to Do as the World Falls Apart With Nate Hagens - Metacrisis Salon #15",
+      "date": "2026-09-22T23:30:00.000Z",
+      "endDate": "2026-09-23T01:30:00.000Z",
+      "location": "New York, NY",
+      "url": "https://luma.com/dear-wazh",
+      "coverImage": "https://images.lumacdn.com/uploads/3v/8c6ab1d0-e012-4da7-a741-eaf8a442d036.jpg",
+      "tags": [
+        "metacrisis salon"
+      ],
+      "price": "$25–50"
+    },
+    {
+      "name": "East Village Tour: Energy and Innovation [Field Trip]",
+      "date": "2026-09-23T15:00:00.000Z",
+      "endDate": "2026-09-23T16:30:00.000Z",
+      "location": "New York, NY",
+      "url": "https://luma.com/dear-odpn",
+      "coverImage": "https://images.lumacdn.com/api-uploads/cs/ba8229f2-0af8-4d72-8eb6-a21f5f76c761.png",
+      "tags": [
+        "field trips"
+      ],
+      "price": "$5+"
+    },
+    {
+      "name": "The Climate Cooling Initiative: Global Launch",
+      "date": "2026-09-23T16:00:00.000Z",
+      "endDate": "2026-09-23T17:45:00.000Z",
+      "location": "New York, NY",
+      "url": "https://luma.com/ab2vr3eh",
+      "coverImage": "https://images.lumacdn.com/uploads/5w/ae4b8a26-de46-451f-a8a6-62789caf9f5c.jpg",
+      "tags": [],
+      "price": "Free"
+    },
+    {
+      "name": "Mapping the Climate Ecosystem: Infrastructure for Coordinated Impact",
+      "date": "2026-09-23T18:00:00.000Z",
+      "endDate": "2026-09-23T19:30:00.000Z",
+      "location": "New York, NY",
+      "url": "https://luma.com/dear-s6mc",
+      "coverImage": "https://images.lumacdn.com/api-uploads/da/82ce712d-0fa4-4c60-86f2-f25224da588d.png",
+      "tags": [],
+      "price": "$0+"
+    },
+    {
+      "name": "Next Economy MBA Alumni + Friends Mixer",
+      "date": "2026-09-23T20:00:00.000Z",
+      "endDate": "2026-09-23T22:00:00.000Z",
+      "location": "New York, NY",
+      "url": "https://luma.com/dear-NextEconomyMBA",
+      "coverImage": "https://images.lumacdn.com/api-uploads/es/f1acf91a-eede-446d-b309-dc5d39c51612.png",
+      "tags": [
+        "social"
+      ],
+      "price": "Free"
+    },
+    {
+      "name": "Community Gardens of the Future",
+      "date": "2026-09-23T22:30:00.000Z",
+      "endDate": "2026-09-24T00:00:00.000Z",
+      "location": "New York, NY",
+      "url": "https://luma.com/dear-pzhl",
+      "coverImage": "https://images.lumacdn.com/uploads/ub/1ffab274-6609-402f-a4e3-4b0cf29996f9.jpg",
+      "tags": [
+        "workshop"
+      ],
+      "price": "Free"
+    },
+    {
+      "name": "Aligning AI Safety with Earth: Salon",
+      "date": "2026-09-24T15:30:00.000Z",
+      "endDate": "2026-09-24T17:00:00.000Z",
+      "location": "New York, NY",
+      "url": "https://luma.com/dear-gkmo",
+      "coverImage": "https://images.lumacdn.com/api-uploads/94/9cfa504a-1f49-4c3f-969a-92478bcbae19.png",
+      "tags": [
+        "workshop"
+      ],
+      "price": "Free"
+    },
+    {
+      "name": "Krill Baby Krill: Piloting an Activist Investment Trust for the Antarctic",
+      "date": "2026-09-24T17:30:00.000Z",
+      "endDate": "2026-09-24T19:30:00.000Z",
+      "location": "New York, NY",
+      "url": "https://luma.com/dear-prz8",
+      "coverImage": "https://images.lumacdn.com/api-uploads/o3/115c476e-91c0-4ea0-ad02-a4b29aba50f1.png",
+      "tags": [
+        "workshop"
+      ],
+      "price": "$10"
+    },
+    {
+      "name": "Biodiversity Love And Law: How Stories, Art, And Law Come Together For Biodiversity Protection",
+      "date": "2026-09-24T20:00:00.000Z",
+      "endDate": "2026-09-24T22:00:00.000Z",
+      "location": "New York, NY",
+      "url": "https://luma.com/dear-gayk",
+      "coverImage": "https://images.lumacdn.com/uploads/zs/f12f0152-6c45-4334-8079-0931db00df47.jpg",
+      "tags": [
+        "workshop"
+      ],
+      "price": "$10+"
+    },
+    {
+      "name": "Dreaming a World that Works for All – ft. Ecocivilization Coalition",
+      "date": "2026-09-24T22:30:00.000Z",
+      "endDate": "2026-09-24T23:30:00.000Z",
+      "location": "New York, NY",
+      "url": "https://luma.com/ecocivilization",
+      "coverImage": "https://images.lumacdn.com/api-uploads/5b/27fcdacf-4e03-48d9-85c4-058abd2da4c7.png",
+      "tags": [
+        "workshop"
+      ],
+      "price": "$5+"
+    },
+    {
+      "name": "Regen Speakeasy...shhh",
+      "date": "2026-09-25T00:00:00.000Z",
+      "endDate": "2026-09-25T02:00:00.000Z",
+      "location": "New York, NY",
+      "url": "https://luma.com/dear-t2j1",
+      "coverImage": "https://images.lumacdn.com/api-uploads/ff/bbb0a340-61aa-4807-bcc3-1e39bd0edf45.png",
+      "tags": [
+        "social"
+      ],
+      "price": "Free"
+    },
+    {
+      "name": "True Human: A Story Big Enough to Carry Us",
+      "date": "2026-09-25T15:00:00.000Z",
+      "endDate": "2026-09-25T17:00:00.000Z",
+      "location": "New York, NY",
+      "url": "https://luma.com/dear-46yq",
+      "coverImage": "https://images.lumacdn.com/uploads/9p/bd436590-ccea-403a-b001-f50f60596850.png",
+      "tags": [],
+      "price": "$20"
+    },
+    {
+      "name": "The Climate Engagement Lab",
+      "date": "2026-09-25T17:30:00.000Z",
+      "endDate": "2026-09-25T18:30:00.000Z",
+      "location": "New York, NY",
+      "url": "https://luma.com/climateengagementlab",
+      "coverImage": "https://images.lumacdn.com/uploads/4b/3314cf0a-bf92-4fcd-8d0f-a919ee06fdef.png",
+      "tags": [],
+      "price": "$5"
+    }
+  ],
+  "pastEvents": [
+    {
+      "name": "Taking Down Oligarchy - Metacrisis Salon #14",
+      "date": "2026-09-10T22:00:00Z",
+      "endDate": "2026-09-11T03:00:00Z",
+      "location": "245 Varet St, Brooklyn, NY 11206, USA",
+      "url": "https://luma.com/dearcrisis",
+      "coverImage": "",
+      "tags": [
+        "metacrisis salon"
+      ]
+    },
+    {
+      "name": "Should We Be Building a Mind? - Metacrisis Salon #13",
+      "date": "2026-08-15T21:00:00Z",
+      "endDate": "2026-08-16T02:00:00Z",
+      "location": "245 Varet St, Brooklyn, NY 11206, USA",
+      "url": "https://luma.com/dearcrisis",
+      "coverImage": "",
+      "tags": [
+        "metacrisis salon"
+      ]
+    },
+    {
+      "name": "Collective Capital - Action Lab #5",
+      "date": "2026-08-11T22:30:00Z",
+      "endDate": "2026-08-12T01:30:00Z",
+      "location": "245 Varet St, Brooklyn, NY 11206, USA",
+      "url": "https://luma.com/dearcrisis",
+      "coverImage": "",
+      "tags": []
+    },
+    {
+      "name": "\"Emergent Strategy\" Reading Club",
+      "date": "2026-07-30T23:00:00Z",
+      "endDate": "2026-07-31T00:00:00Z",
+      "location": "New York, NY",
+      "url": "https://partiful.com/e/DRfLZZhVDPSxMWVDC47Q?c=RXutYbkW",
+      "coverImage": "",
+      "tags": []
+    },
+    {
+      "name": "Strategy & Power - Action Lab #4",
+      "date": "2026-07-27T22:30:00Z",
+      "endDate": "2026-07-28T01:30:00Z",
+      "location": "245 Varet St, Brooklyn, NY 11206, USA",
+      "url": "https://luma.com/dearcrisis",
+      "coverImage": "",
+      "tags": []
+    },
+    {
+      "name": "How We Build Power - Metacrisis Salon #12",
+      "date": "2026-07-18T22:00:00Z",
+      "endDate": "2026-07-19T03:00:00Z",
+      "location": "245 Varet St, Brooklyn, NY 11206, USA",
+      "url": "https://luma.com/dearcrisis",
+      "coverImage": "",
+      "tags": [
+        "metacrisis salon"
+      ]
+    },
+    {
+      "name": "🌿 Rooftop Reciprocity: An Urban Gardening — Action Lab #3",
+      "date": "2026-06-28T19:00:00Z",
+      "endDate": "2026-06-28T22:30:00Z",
+      "location": "Lightning Lofts, 245 Varet St, Brooklyn, NY 11206, USA",
+      "url": "https://luma.com/dearcrisis",
+      "coverImage": "",
+      "tags": []
+    },
+    {
+      "name": "⚡Off-Grid Comms with Signals Rising- Resiliency Action Lab #2",
+      "date": "2026-06-25T22:30:00Z",
+      "endDate": "2026-06-26T02:00:00Z",
+      "location": "Lightning Lofts, 245 Varet St, Brooklyn, NY 11206, USA",
+      "url": "https://luma.com/dearcrisis",
+      "coverImage": "",
+      "tags": []
+    },
+    {
+      "name": "Two Weeks, No Grid - Resiliency Action Lab #1",
+      "date": "2026-06-23T22:30:00Z",
+      "endDate": "2026-06-24T01:00:00Z",
+      "location": "New York, NY",
+      "url": "https://luma.com/event/evt-DxwtLAbwSM0Gmgp",
+      "coverImage": "",
+      "tags": []
+    },
+    {
+      "name": "How we build an Ecocivilization - Metacrisis Salon #11",
+      "date": "2026-06-06T22:00:00Z",
+      "endDate": "2026-06-07T03:00:00Z",
+      "location": "245 Varet St, Brooklyn, NY 11206, USA",
+      "url": "https://luma.com/dearcrisis",
+      "coverImage": "",
+      "tags": [
+        "metacrisis salon"
+      ]
+    },
+    {
+      "name": "Facilitation Co-Learning Workshop",
+      "date": "2026-05-30T18:00:00Z",
+      "endDate": "2026-05-30T21:00:00Z",
+      "location": "New York, NY",
+      "url": "https://partiful.com/e/u91iByqFAsLIAloW23qu?",
+      "coverImage": "",
+      "tags": []
+    },
+    {
+      "name": "Is Climate Stabilization still possible? - Metacrisis Salon #10",
+      "date": "2026-05-16T22:00:00Z",
+      "endDate": "2026-05-17T02:30:00Z",
+      "location": "245 Varet St, Brooklyn, NY 11206, USA",
+      "url": "https://luma.com/dearcrisis",
+      "coverImage": "",
+      "tags": [
+        "metacrisis salon"
+      ]
+    },
+    {
+      "name": "Vibe Coding Circle: Multiplayer Mode",
+      "date": "2026-05-09T14:00:00Z",
+      "endDate": "2026-05-09T21:00:00Z",
+      "location": "245 Varet St, Brooklyn, NY 11206, USA",
+      "url": "https://luma.com/dearcrisis",
+      "coverImage": "",
+      "tags": []
+    },
+    {
+      "name": "Earth Day Panel: Rethinking the Environmental Movement",
+      "date": "2026-04-22T23:00:00Z",
+      "endDate": "2026-04-23T01:00:00Z",
+      "location": "New York, NY",
+      "url": "https://events.liveit.io/irvington-theater/earth-day-panel-rethin",
+      "coverImage": "",
+      "tags": []
+    },
+    {
+      "name": "Metacrisis Salon #9 — Is Empire Collapsing?",
+      "date": "2026-04-18T22:00:00Z",
+      "endDate": "2026-04-19T01:00:00Z",
+      "location": "Brooklyn, NY",
+      "url": "https://lu.ma/evt-roGfayrvwyIA6uv",
+      "coverImage": "",
+      "tags": [
+        "metacrisis salon"
+      ]
+    },
+    {
+      "name": "\"The AI Doc\" : Screening + Discussion",
+      "date": "2026-03-29T20:00:00Z",
+      "endDate": "2026-03-30T00:00:00Z",
+      "location": "New York, NY",
+      "url": "https://the-ai-doc-nyc.web.app/",
+      "coverImage": "",
+      "tags": [
+        "documentary"
+      ]
+    },
+    {
+      "name": "Join or Die - Film Screening + Discussion",
+      "date": "2026-03-21T23:00:00Z",
+      "endDate": "2026-03-22T02:00:00Z",
+      "location": "New York, NY",
+      "url": "https://partiful.com/e/hQtXB2BsCusI4ZMB99sH",
+      "coverImage": "",
+      "tags": [
+        "documentary"
+      ]
+    },
+    {
+      "name": "Metacrisis Salon #8 — Disconnection & Polarization",
+      "date": "2026-02-21T22:00:00Z",
+      "endDate": "2026-02-22T01:00:00Z",
+      "location": "Lightning Lofts, Brooklyn, NY",
+      "url": "https://partiful.com/e/twdRTgm6Nmab4ElSNUZo",
+      "coverImage": "",
+      "tags": [
+        "metacrisis salon"
+      ]
+    }
+  ],
+  "tags": [
+    "create-a-thon",
+    "documentary",
+    "field trips",
+    "interview",
+    "metacrisis salon",
+    "social",
+    "workshop"
+  ]
+}
