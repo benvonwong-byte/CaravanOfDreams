@@ -1,8 +1,8 @@
 # Next session: Caravan of Dreams print + Dream Room
 
-Handoff from the Claude session that ran Sept 14 to Oct 26, 2026. Branch: `print-and-dreamroom-2026-10`. Nothing here is merged to `main`.
+Handoff from the Claude session that ran Sept 14 to Oct 26, 2026. Merged to `main` on Oct 26 (PR #2).
 
-## What is in this branch
+## What is in the repo
 
 | Path | What it is | Rebuild |
 |---|---|---|
@@ -37,5 +37,4 @@ This repo is public. These stay on Ben's machine only: the event tracker spreads
 
 ## Open items for Ben
 
-- Merge this branch to `main`, or keep it as a branch.
 - The booking admin accepts two spellings of one password; confirm which is real so the other can be removed (details in the private repo, `checkAdminLogin`).
